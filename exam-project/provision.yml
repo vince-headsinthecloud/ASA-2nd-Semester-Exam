@@ -1,0 +1,14 @@
+---
+- name: Execute Custom Bash Script
+  hosts: default  # The host name defined in your Vagrantfile
+  become: yes  # Use sudo (root) privileges
+
+  tasks:
+    - name: Copy the Bash Script to the Remote Host
+      copy:
+        src: /Users/user/Desktop/AltSchool/2nd-Sememster-Cloud/exam-project/provision.sh'
+        dest: ~/home/slave/provision.sh
+        mode: 0755  # Make the script executable
+
+    - name: Execute the Bash Script
+      command: ~/home/slave/provision.sh
